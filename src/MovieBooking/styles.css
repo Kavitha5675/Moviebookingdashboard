@@ -22,3 +22,18 @@ TableHead {
     text-align: center;
     position: relative;
 }
+
+div.paper {
+    position: relative;
+    top: 45%;
+    width: 400px;
+    left: 35%;
+    background-color: #eee;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 127px;
+    border-radius: 5px;
+}

@@ -22,33 +22,36 @@ function App() {
         let data;
         console.log(list)
         console.log(movieId)
-        list.map((movie, i) => {
+        // eslint-disable-next-line array-callback-return
+        list.map((movie) => {
             console.log(movieId)
             if (movieId === movie["_id"]) {
-                movie["booked-tickets"] = movie["booked-tickets"] + bookedTickets
+                movie["booked-tickets"] = parseInt(movie["booked-tickets"],10) + parseInt(bookedTickets,10)
                 console.log("hello")
                 data = {
                     "name": movie.name,
                     "_id": movie["_id"],
                     "total-tickets": movie["total-tickets"],
                     "booked-tickets": movie["booked-tickets"]
-                };
-                console.log(data)
-                fetch(`https://crudcrud.com/api/837441b5dda94ff690c89c49696b0dc7/movies/${movieId}`, {
+                }
+                const requestOptions={
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
+                        // 'Access-Control-Allow-Origin': 'https://crudcrud.com/api/e1f51c4b46bc46a08b2b729cce24b885/movies',
+                        'Access-Control-Allow-Headers':'Content-Type',
+                        'Access-Control-Allow-Methods': 'GET, POST, PUT'
                     },
                     body: JSON.stringify(data)
-                })
+                }
+                fetch(`https://crudcrud.com/api/e1f51c4b46bc46a08b2b729cce24b885/movies/${movieId}`,requestOptions)
                     .then(async response => {
-                        const data = await response.json()
+                        const responseData = await response.json()
                         if (!response.ok) {
-                            const error = (data && data.message) || response.status;
+                            const error = (responseData && responseData.message) || response.status;
                             return Promise.reject(error)
                         }
-                        setMovieId(data._id);
+                        setList(data)
                     }).catch(error => {
                     setErrorMessage(error);
                     console.log("There is an error", error)
@@ -59,12 +62,12 @@ function App() {
     };
     // https://crudcrud.com/api/837441b5dda94ff690c89c49696b0dc7/movies
     return (
-        <div className={"wrapper"}>
-            <div style={{marginLeft: "20px"}}>
+        <div  style={{marginLeft: "20px"}}>
+
                 <h3>
                     Booking dashboard
                 </h3>
-            </div>
+
             <div>
                 <label style={{marginLeft: "30px"}}>
                     <p>movie Id</p>

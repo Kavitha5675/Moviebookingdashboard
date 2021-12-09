@@ -1,5 +1,5 @@
 export function getList() {
-    return fetch('https://crudcrud.com/api/837441b5dda94ff690c89c49696b0dc7/movies')
+    return fetch('https://crudcrud.com/api/e1f51c4b46bc46a08b2b729cce24b885/movies')
         .then(data => data.json())
 }
 
