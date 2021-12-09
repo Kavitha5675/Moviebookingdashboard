@@ -1,0 +1,24 @@
+TableContainer {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width:100px;
+    height:100px;
+    padding: 50px 30px 50px 80px;
+    position: center;
+}
+
+TableCell, TableHead {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+TableRow:nth-child(even){background-color: #f2f2f2;}
+
+TableRow:hover {background-color: #ddd;}
+
+TableHead {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    position: relative;
+}
